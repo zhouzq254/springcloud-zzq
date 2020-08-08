@@ -1,0 +1,27 @@
+server:
+  port: 9003
+
+service-url:
+  service-zzq: http://localhost:9002
+spring:
+  application:
+    name: gateway-zzq
+  cloud:
+    gateway:
+      routes:
+        - id: feignclient-zzq
+          uri: http://localhost:9001
+          predicates:
+            - Path=/users
+        - id: service-zzq
+          uri: ${service-url.service-zzq}
+          predicates:
+            - Path=/demo/test
+eureka:
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+
