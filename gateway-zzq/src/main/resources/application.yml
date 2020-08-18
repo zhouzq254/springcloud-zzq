@@ -12,7 +12,13 @@ spring:
         - id: feignclient-zzq
           uri: http://localhost:9001
           predicates:
-            - Path=/users
+            - Path=/users/*
+          filters:
+            - name: Hystrix
+              args:
+                name: methodfallback
+                fallbackUri: forward:/fallback
+
         - id: service-zzq
           uri: ${service-url.service-zzq}
           predicates:
