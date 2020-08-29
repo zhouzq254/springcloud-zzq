@@ -1,12 +1,13 @@
 package com.scnu.zzq.service.controller;
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.google.common.collect.Lists;
 import com.scnu.zzq.service.dto.UserDTO;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -20,6 +21,7 @@ public class UserController {
         userDTO.setUserId("1");
 
         userList.add(userDTO);
+        log.info("{}",userList);
         return userList;
     }
 
@@ -29,7 +31,7 @@ public class UserController {
         userDTO.setAge(31);
         userDTO.setName("zzq");
         userDTO.setUserId("1");
-        System.out.println(userDTO);
+        log.info("{}",userDTO);
         return userDTO;
     }
 
